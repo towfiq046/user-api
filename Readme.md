@@ -16,6 +16,8 @@ Parent User can have address but the Child User can not have any address of it's
 ```bash
 GET: /parent
 
+GET: /parent/<int:parent_id>
+
 POST: /parent
 
 PUT: /parent/<int:parent_id>
@@ -26,6 +28,8 @@ DELETE: /parent/<int:parent_id>
 * API for child user:
 
 ```bash
+GET: /child
+
 GET: /parent/<int:parent_id>/child
 
 POST: /parent/<int:parent_id>/child
@@ -35,8 +39,7 @@ PUT: /parent/<int:parent_id>/child/<int:child_id>
 DELETE: /parent/<int:parent_id>/child/<int:child_id>
 ```
 
-
-User data for parent:
+User data example for parent:
 
 `{
   "first_name": "Towfiq",
@@ -47,7 +50,7 @@ User data for parent:
   "zip_code": 5245
 }`
 
-User data for child:
+User data example for child:
 
 `{
   "first_name": "Towfiq",
@@ -56,13 +59,12 @@ User data for child:
 
 Applications required to run this app:
 
-* To input data download postman form here (<https://www.postman.com/downloads/>)
 * Python 3.9 (<https://www.python.org/downloads/>)
   * Note: Check the `Add python 3.9 to PATH` box on the installation stage
+* Execute `pip install pipenv`
 
 ## Run the project
 
 * `cd` to the project directory
-* Execute `pip install pipenv`
 * Execute the command `pipenv install` to install all the dependencies
 * Now run the project with `python app.py` command

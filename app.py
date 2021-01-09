@@ -55,6 +55,15 @@ def show_parent():
     return jsonify(result), 200
 
 
+@app.route("/parent/<int:parent_id>", methods=["GET"])
+def show_single_parent(parent_id):
+    """Show single parent"""
+    parent = Parent.query.get(parent_id)
+    if not parent:
+        return {"msg": "Parent not found"}, 404
+    return parent_schema.dump(parent), 200
+
+
 @app.route("/parent/<int:parent_id>", methods=["PUT"])
 def update_parent(parent_id):
     """Update a parent"""
@@ -123,6 +132,16 @@ def create_child(parent_id):
     db.session.add(child)
     db.session.commit()
     return child_schema.dump(child), 201
+
+
+@app.route("/child", methods=["GET"])
+def show_children():
+    """Show single parent"""
+    children = Child.query.all()
+    if not children:
+        return {"msg": "Child not found"}, 404
+    result = children_schema.dump(children)
+    return jsonify(result), 200
 
 
 @app.route("/parent/<int:parent_id>/child", methods=["GET"])
@@ -204,4 +223,4 @@ def method_not_allowed(err):
 
 if __name__ == "__main__":
     db.create_all()
-    app.run()
+    app.run(debug=True)
