@@ -30,6 +30,8 @@ DELETE: /parent/<int:parent_id>
 ```bash
 GET: /child
 
+GET: /child/<int:child_id>
+
 GET: /parent/<int:parent_id>/child
 
 POST: /parent/<int:parent_id>/child

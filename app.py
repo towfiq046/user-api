@@ -144,6 +144,15 @@ def show_children():
     return jsonify(result), 200
 
 
+@app.route("/child/<int:child_id>", methods=["GET"])
+def show_single_child(child_id):
+    """Show single parent"""
+    child = Child.query.get(child_id)
+    if not child:
+        return {"msg": "Child not found"}, 404
+    return child_schema.dump(child), 200
+
+
 @app.route("/parent/<int:parent_id>/child", methods=["GET"])
 def show_child(parent_id):
     """Show all child"""
